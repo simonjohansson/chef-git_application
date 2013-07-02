@@ -38,7 +38,7 @@ This will do the following.
 
 # Databag
 
-The LWRP will look in the databag git_keys for a item with id "dataservice" with the following layout
+The LWRP will look in the databag git_keys for a item with id "coolApp" with the following layout
 
 ```
 {
