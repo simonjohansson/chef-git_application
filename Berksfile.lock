@@ -1,0 +1,34 @@
+{
+  "sha": "c08a820614606bb0f7e068d37f98ee61d31013f2",
+  "sources": {
+    "git_application": {
+      "path": "."
+    },
+    "git_ssh_wrapper": {
+      "locked_version": "0.1.1",
+      "git": "git@github.com:simonjohansson/chef-git_ssh_wrapper.git",
+      "ref": "786fa72c87bea6df82feba0e850cfa2318035dfd"
+    },
+    "git": {
+      "locked_version": "2.5.2"
+    },
+    "dmg": {
+      "locked_version": "1.1.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.0"
+    },
+    "yum": {
+      "locked_version": "2.3.0"
+    },
+    "windows": {
+      "locked_version": "1.10.0"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "runit": {
+      "locked_version": "1.1.6"
+    }
+  }
+}
