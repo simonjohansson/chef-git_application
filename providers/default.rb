@@ -20,24 +20,29 @@ action :create do
     recursive true
   end
 
-  # Get the deploy key from the data-bag.
+  # Unless we've been told not to, sync the code with the git repository.
   #
-  key_obj = data_bag_item('git_keys', deploy_key)
+  unless new_resource.no_sync
+    # Get the deploy key from the data-bag.
+    #
+    key_obj = data_bag_item('git_keys', deploy_key)
 
-  # Deploy the git deploy key to the user.
-  git_ssh_wrapper new_resource.name do
-    owner user
-    group group
-    ssh_key_data key_obj["private_key"]
+    # Deploy the git deploy key to the user.
+    git_ssh_wrapper new_resource.name do
+      owner user
+      group group
+      ssh_key_data key_obj["private_key"]
+    end
+
+    git deploy_to do
+      repository repository
+      reference new_resource.git_reference
+      action :sync
+      user user
+      group group
+      ssh_wrapper "/home/#{user}/.ssh/wrappers/#{new_resource.name}_deploy_wrapper.sh"
+    end
   end
 
-  git deploy_to do
-    repository repository
-    reference new_resource.git_reference
-    action :sync
-    user user
-    group group
-    ssh_wrapper "/home/#{user}/.ssh/wrappers/#{new_resource.name}_deploy_wrapper.sh"
- end
 end
 
