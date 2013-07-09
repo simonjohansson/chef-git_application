@@ -14,6 +14,19 @@ action :create do
     supports :manage_home => true
   end
 
+  unless group.nil?
+    # Create our group and add the user to it.
+    #
+    group group do
+      action :create
+    end
+    group group do
+      action :modify
+      members user
+      append true
+    end
+  end
+
   directory deploy_to do
     owner user
     group group
