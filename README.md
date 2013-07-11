@@ -7,6 +7,7 @@
 :repository, :kind_of => String, :required => false
 :git_reference, :kind_of => String, :default => "master"
 :deploy_key, :kind_of => String, :required => false
+:no_sync, :kind_of => [ TrueClass, FalseClass ], :default => false
 ```
 
 #Usage
@@ -48,3 +49,20 @@ The LWRP will look in the databag git_keys for a item with id "coolApp" with the
 }
 
 ```
+
+
+# Doing everything other than syncing
+
+If for some reason you don't want to sync, you can use `no_sync`.
+This is useful for if you use vagrant for dev, and when provisioning your
+vagrant VM you want to use a shared directory.
+```
+git_application "coolApp" do
+  user "coolApp"
+  deploy_to "/opt/coolApp"
+  repository "git@github.com:ORG/coolApp.git"
+  no_sync true
+end
+```
+I suppose for actual usage, you'd want `no_sync` to depend upon some env
+variable that is defined in your `Vagrantfile`.

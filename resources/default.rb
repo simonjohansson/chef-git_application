@@ -8,6 +8,8 @@ attribute :deploy_to, :kind_of => String, :required => false
 attribute :repository, :kind_of => String, :required => true
 attribute :git_reference, :kind_of => String, :default => "master"
 attribute :deploy_key, :kind_of => String, :required => false
+attribute :no_sync, :kind_of => [ TrueClass, FalseClass ], :default => false
+
 
 def initialize(*args)
   super
